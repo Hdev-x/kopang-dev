@@ -1,6 +1,6 @@
-# ml/ — 데이터 생성 · 시드 · 집계
+# apps/ml/ — 데이터 생성 · 시드 · 집계
 
-> 근거 문서: [`docs/_/시드_시나리오.md`](../docs/_/시드_시나리오.md) · [`docs/_/DB_스키마_DDL.md`](../docs/_/DB_스키마_DDL.md)
+> 근거 문서: [`docs/_/시드_시나리오.md`](../../docs/_/시드_시나리오.md) · [`docs/_/DB_스키마_DDL.md`](../../docs/_/DB_스키마_DDL.md)
 
 ## 폴더 구성
 
@@ -8,7 +8,7 @@
 **모든 스크립트는 프로젝트 루트에서 실행한다** — 내부 경로가 루트 기준이다.
 
 ```
-ml/
+apps/ml/
 ├─ ddl.sql                  # 테이블 생성 SQL (새 환경용 — 공유 Supabase엔 적용 완료)
 ├─ requirements.txt
 ├─ seed/                    # ① 데이터 생성·시드
@@ -32,10 +32,10 @@ ml/
 DB="postgresql://<노션의 접속 문자열>"        # 세션 풀러 5432 사용
 
 # 0. 빈 테이블 생성
-psql "$DB" -f ml/ddl.sql
+psql "$DB" -f apps/ml/ddl.sql
 
 # 1. 마스터 시드 로드 (순서 중요: categories → products → users)
-cd ml/seed
+cd apps/ml/seed
 psql "$DB" -c "\copy categories FROM 'categories.csv' CSV HEADER"
 psql "$DB" -c "\copy products   FROM 'products.csv'   CSV HEADER"
 psql "$DB" -c "\copy users      FROM 'users.csv'      CSV HEADER"
@@ -55,8 +55,8 @@ psql "$DB" -f seed_events.sql
 ## ML 학습·서빙 (프로젝트 루트에서)
 
 ```bash
-ml/.venv/bin/python ml/model/train_churn.py                          # 학습 → ml/model/churn_model.pkl
-ml/.venv/bin/python -m uvicorn ml.model.serve:app --port 8000        # 서빙 (Spring 배치가 호출)
+apps/ml/.venv/bin/python apps/ml/model/train_churn.py                          # 학습 → apps/ml/model/churn_model.pkl
+apps/ml/.venv/bin/python -m uvicorn apps.ml.model.serve:app --port 8000        # 서빙 (Spring 배치가 호출)
 ```
 
 ## 흐름 요약

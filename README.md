@@ -92,10 +92,11 @@
 ## 폴더 구조
 
 ```
-kopang/
-├── frontend/   # React 사용자·관리자·데스크톱 웹
-├── backend/    # Spring Boot API·인증·배치·대응·측정
-├── ml/         # 이탈 예측 모델·FastAPI 서빙·데모 데이터
+kopang-refactored/
+├── apps/
+│   ├── web/      # React 사용자·관리자·데스크톱 웹
+│   ├── backend/  # Spring Boot API·인증·배치·대응·측정
+│   └── ml/       # 이탈 예측 모델·FastAPI 서빙·데모 데이터
 ├── docs/       # 요구사항·API·DB 명세, README 이미지
 └── outputs/    # 최종 발표자료 등 공유 산출물
 ```
@@ -106,9 +107,9 @@ PostgreSQL 준비 후 세 파트를 각각 실행
 
 | 파트 | 명령 | 비고 |
 | --- | --- | --- |
-| Backend (:8080) | `cd backend && ./gradlew bootRun` | `src/main/resources/application-dev.properties`에 DB·JWT·OAuth·S3·결제·메일 키 설정 (Git 미포함) |
-| ML (:8000) | `pip install -r ml/requirements.txt` → `uvicorn ml.model.serve:app --port 8000` | 학습·시드는 [ml/README.md](ml/README.md) |
-| Frontend | `cd frontend && npm install && npm run dev` | `/api` 요청은 Vite proxy가 backend로 전달 |
+| Backend (:8080) | `cd apps/backend && ./gradlew bootRun` | `src/main/resources/application-dev.properties`에 DB·JWT·OAuth·S3·결제·메일 키 설정 (Git 미포함) |
+| ML (:8000) | `pip install -r apps/ml/requirements.txt` → `uvicorn apps.ml.model.serve:app --port 8000` | 학습·시드는 [apps/ml/README.md](apps/ml/README.md) |
+| Frontend | `cd apps/web && npm ci && npm run dev` | `/api` 요청은 Vite proxy가 backend로 전달 |
 
 ## 문서·발표자료
 

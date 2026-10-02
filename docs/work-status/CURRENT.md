@@ -1,14 +1,16 @@
 # 개인 코팡 현재 작업
 
-> 갱신: 2026-10-02 · 현재 단계: 운영문서 기준 커밋·앱 경로 이전과 로컬 검증 진행 중.
+> 갱신: 2026-10-02 · 현재 단계: 앱 최상위 경로 이전·로컬 비교 검증 완료. 진행 작업 없음.
 
-- 작업 공간: `/Users/han/dev/projects/personal/kopang-refactored`
+- 개인 primary: `/Users/han/dev/projects/personal/kopang-refactored` (`main`, 문서 기준 `9ec5237`, 기존 앱 배치 유지).
+- 이번 결과 작업공간: `/Users/han/Documents/Codex/2026-10-02/task-2/kopang-app-paths` (`refactor/app-paths`). 현재 결과는 이 worktree에 있으며 commit·HEAD는 Git에서 확인한다.
 - 원격: [Hdev-x/kopang-refactored](https://github.com/Hdev-x/kopang-refactored) · 비공개 · 기본 브랜치 main.
-- 작업/Task/Gate 정본: [WORK](./WORK.md)의 다음 앱 경로 계획. 구조·검증 기준은 [목표 구조·이전 계획](../개인-리팩터링-구조-계획.md) 6–7절. 활성 운영은 [상태 규칙](./README.md)·[Git 규칙](../git-workflow.md).
+- 작업/Task/Gate 정본: [WORK](./WORK.md)의 앱 경로 이전 결과. 구조·검증 기준은 [목표 구조·이전 계획](../개인-리팩터링-구조-계획.md) 6–7절. 활성 운영은 [상태 규칙](./README.md)·[Git 규칙](../git-workflow.md).
 - 합의: [DECISIONS](./DECISIONS.md) · 필요한 미결: [OPEN-QUESTIONS](./OPEN-QUESTIONS.md).
-- 현재 실제 앱 경로: 아직 `frontend/`, `backend/`, `ml/`. 별도 `refactor/app-paths` branch/worktree에서 세 폴더 이동과 필요한 경로 참조만 수정한다.
+- 현재 실제 앱 경로: `apps/web/`, `apps/backend/`, `apps/ml/`. 별도 `refactor/app-paths` branch/worktree에서 이동과 필수 경로 수정·전후 검증을 완료했다. 프론트 내부 경계·반응형 통합은 후속 범위다.
 - 승인: 2026-10-02 11:31:22Z 사용자의 `ㄱㄱ`는 운영문서 로컬 기준 커밋→작업 branch에서 세 앱 이동·필요 경로 수정→전후 검증→로컬 커밋을 포함한다. push·PR·merge/main 병합·CI/보호 설정·기능/스타일 통합은 제외.
-- 다음 행동 하나: 작성한 운영 문서만 로컬 기준 커밋으로 고정하고 별도 작업공간에서 baseline을 확보한다. 검증 차단/실패는 WORK에 사실대로 기록한다.
+- 결과/한계: build/type·Backend package/test compile·합성 ML/HTTP·로그인 화면 전후 비교 통과. lint 기존 52 errors·6 warnings는 동일하며 실제 API/DB/결제·운영 모델은 미검증. 자세한 Task/Gate·근거는 WORK. 원본 365개 이력은 유지했으며 11:45:40Z 재개 승인 범위도 같았다.
+- 다음 행동 하나: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 먼저 다룰 후속 범위를 결정한다. 원격 전달은 별도 요청으로 판단한다.
 
 ## 완료한 기반과 근거
 
@@ -29,6 +31,6 @@
 - 앱 소스·실제 폴더 배치·원본 팀 저장소·외부 팀 worklog는 수정하지 않았다. 재개 시에는 이 snapshot과 실제 dirty 상태를 다시 비교한다.
 - build/lint·브라우저·API·DB·ML 실행 검증은 수행하지 않았다. remote CI/보호·merge 설정도 미확인. 다음 계획에서 환경과 기존 실패 기준부터 확인하며 현재 상태를 실행 정상으로 표시하지 않는다.
 
-## 다음 계획에서 확인할 범위
+## 후속 변경에서 확인할 범위
 
-앱별로 시작 명령·import/config·정적 자산·문서/CI 참조·ML 입출력 상대 경로를 목록화하고, 기준 확보→이전→앱별 검증→복구 방법을 정한다. 기존 구조 계획의 CSS 정리는 후보이며 실행 순서나 구체적 변경을 이번 운영 적용으로 승인한 것이 아니다. 기능·URL·디자인·DB·ML 계약 변경과 묶지 않는다. 검증 환경 관련 질문은 OPEN-QUESTIONS에서 필요한 것부터 확인한다.
+앱 최상위 경로 이전의 명령·참조·baseline·비교·복구 기준은 WORK에서 완료했다. 실제 Backend runtime·API/DB·운영 모델·전체 기능 검증은 개인 환경과 입력을 확보한 뒤 진행한다. 기존 구조 계획의 CSS 정리는 후보이며 실행 순서나 구체적 변경을 이번 운영 적용으로 승인한 것이 아니다. 기능·URL·디자인·DB·ML 계약 변경과 묶지 않는다. 검증 환경 관련 질문은 OPEN-QUESTIONS에서 필요한 것부터 확인한다.

@@ -14,8 +14,8 @@
     ⑤ 원복이 실행분만 정확히 되돌리는가 (시연·이벤트 데이터 보존)
 
 사용:
-    python3 ml/demo/verify_send.py --limit 5          # 검증 후 자동 원복
-    python3 ml/demo/verify_send.py --limit 5 --keep   # 원복하지 않고 남김
+    python3 apps/ml/demo/verify_send.py --limit 5          # 검증 후 자동 원복
+    python3 apps/ml/demo/verify_send.py --limit 5 --keep   # 원복하지 않고 남김
 """
 
 import argparse
