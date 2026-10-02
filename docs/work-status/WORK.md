@@ -80,7 +80,7 @@
 
 - 당시 앱 이전 검증 작업공간: `/Users/han/Documents/Codex/2026-10-02/task-2/kopang-app-paths`, branch `refactor/app-paths`. 현재 dev 위치는 [CURRENT](./CURRENT.md)를 참조한다. 당시 primary `/Users/han/dev/projects/personal/kopang-refactored`의 main은 문서 기준 `9ec5237`이었고 앱 배치는 기존대로였다.
 - 비밀정보: 실제 환경값·토큰·model·의존성·build/검증 산출물은 커밋하지 않음. 학습/API/DB 환경이 필요한 후속 기능은 개인 검증 입력·안전한 서비스부터 확보한다.
-- 다음 행동 하나: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 먼저 다룰 후속 범위를 결정한다. push·PR·merge는 이번 승인 범위에 포함되지 않는다.
+- 당시 다음 행동: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 후속 범위 결정. 앱 이전 당시 원격 전달은 제외였으며, 이후 승인된 GitHub 전달은 아래 별도 구획에서 관리한다.
 
 
 ## 수동 worktree의 dev 위치 변경
@@ -97,7 +97,7 @@
 
 - 상태: 완료 (당시 로컬 FF 실행 기록). assistant가 `머지까지 해줘` 요청을 로컬 main 반영으로 좁게 해석해 진행했다. 이후 사용자가 push·PR·Squash를 명시해 아래 원격 단계로 정정했다. 당시 원격 행동·삭제·기능 변경은 실행하지 않았다.
 - 시작 상태: primary main `9ec5237` clean, branch `refactor/app-paths`의 `43addd0`에 CURRENT·WORK 위치 기록만 unstaged. main은 branch의 조상이고 충돌할 primary ignored 파일도 없음.
-- 방법/실행: 관련 위치 문서 `4e72323` 커밋 후 `git merge --ff-only refactor/app-paths`로 main을 `9ec5237`에서 `4e72323`으로 갱신했다. 최신 실제 상태 문서도 같은 branch에서 커밋해 fast-forward로 main에 포함한다. 기존 커밋은 그대로 보존하며 별도 merge commit·Squash·rebase를 만들지 않는다. 원격 PR/Squash 기본 정책이나 보호 설정은 변경하지 않는다.
+- 방법/실행: 관련 위치 문서 `4e72323` 커밋 후 `git merge --ff-only refactor/app-paths`로 main을 `9ec5237`에서 `4e72323`으로 갱신했다. 최신 실제 상태 문서 `2d3bec8`도 같은 branch에서 커밋해 fast-forward로 main에 포함했다. 해당 로컬 단계에서는 기존 커밋을 보존하고 별도 merge commit·Squash·rebase를 만들지 않았다. 원격 PR/Squash 기본 정책이나 보호 설정은 변경하지 않는다.
 - 기준: 기존 build/type·Backend package/test compile·합성 ML HTTP·로그인 두 화면 검증과 앱 900개 SHA256/mode를 재확인한다. lint 기존 52 errors·6 warnings 및 실제 API/DB/결제/모델 미검증은 유지한다. 문서 링크·전체 diff·secret 확인과 실제 main/branch 상태 대조로 완료 판단.
 
 - 완료 검증: main에 apps/web·apps/backend·apps/ml와 관련 기록 반영. 앱 900개 SHA256·mode는 `43addd0`과 같고 기본 앱 코드 변경 없음. 새 앱 검사를 반복하지 않고 소스 동일성에 따라 위 기존 build/type·Backend compile/package·합성 ML HTTP·로그인 비교 증거를 유지한다. 위치·완료 문서의 링크/diff/secret와 main·branch 결과 및 dirty 상태를 확인한다.
@@ -107,6 +107,7 @@
 
 ## GitHub 전달과 Squash merge
 
+- 상태: 내용·검증 정리 완료. [PR #1](https://github.com/Hdev-x/kopang-refactored/pull/1)을 Draft로 생성했고, Ready·merge·Squash SHA의 최신 상태는 PR/Git에서 확인한다. 이 구획의 Task는 내용/검증 Gate이며 실제 Git lifecycle 완료를 추정하지 않는다.
 - 최신 승인: 사용자 `푸쉬 피알 스쿼시 머지로 해야지`가 앞선 assistant의 local-only 해석을 대체한다. 작업 branch push→Draft PR→내용/검증 검토→Ready→Squash merge와 안전한 로컬 main 동기화까지 진행한다. 원격 main 직접 push·force push·보호/검사 우회·운영 DB/결제 실행은 하지 않는다.
 - 전달 기준: 실제 원격 main `183600ee` (원본 365개 이력). PR에는 운영규칙/상태/PR·Issue 양식과 앱 900파일 최상위 이전·필수 경로·위치 기록을 함께 설명한다. 기존 로컬 main FF 계열은 Squash 후 복구 가능한 backup과 해당 worktree branch로 보존한다.
 - GitHub 확인: 인증 Hdev-x, 비공개 저장소, push 권한 및 Squash 허용. main 조회의 protected=false. branch rules API는 현재 비공개 플랜의 403으로 조회 불가이므로 규칙 없음으로 쓰지 않는다. 실제 PR 검사·merge 조건은 PR/GitHub의 응답을 따르며 admin bypass는 사용하지 않는다.
@@ -114,8 +115,10 @@
 ### Task·내용 Gate
 
 - [x] 통과 · 실제 remote/auth/중복 PR·main ancestry·전달 범위 확인. local main 직접 업로드 없이 작업 branch를 사용한다.
-- [ ] 진행 중 · 최신 승인/기록과 PR 본문을 실제 전체 diff·검증 한계에 맞춰 완성.
-- [ ] 대기 · Draft PR 최신 head의 diff/범위·비밀정보·앱 보존·독립 검토·실제 자동검사/리뷰 상태 확인.
-- [ ] 대기 · 내용 Gate 완료 후 Ready·Squash의 실제 상태/commit/tree와 local 동기화를 Git/GitHub에서 확인. Git lifecycle의 최종 상태는 저장소 문서에 추정 복제하지 않는다.
+- [x] 통과 · 최신 승인/기록과 PR 본문을 전체 diff·검증 결과·기존 실패·미검증에 맞춰 완성.
+- [x] 통과 · Draft PR 내용의 전체 diff·비밀정보·앱 900개 보존·독립 코드/문서 검토 완료. 제출 직후 head `8c0b538`은 main `183600ee` 기준 914개 변경, mergeable/clean, check runs·commit statuses·리뷰·review thread 0개였다. 자동 검사 없음은 통과가 아니라 미등록으로 기록한다. 후속 상태 문서 변경은 앱 소스 동일성 및 새 diff/secret 검사로 확인한다.
+- [x] 준비 완료 · Ready·Squash 전에 최신 head/검사/리뷰·native merge 조건을 재확인하고 해당 SHA로 병합한다. 로컬 main은 clean/충돌 없는 상태와 backup 이름을 확인한 뒤 `backup/local-main-before-squash-2026-10-02`로 이력을 보존하고 새 main을 origin/main에 연결한다. 필요한 의존성이 있는 결과 worktree/branch는 보존한다. 실제 실행·merge SHA/tree·동기화 여부는 Git/PR와 아래 외부 근거에서 확인한다.
 
 - 기존 앱 검증: build/type·Backend package/test compile·합성 ML HTTP·로그인 두 화면 비교 통과. lint 52 errors·6 warnings는 동일한 기존 실패다. PR 최신 head의 앱 900개 SHA256/mode와 승인된 ML 경로 4곳 정규화 AST를 대조하며 소스가 같으면 앱 검사를 반복하지 않는다. 실제 API/DB/결제/운영 모델은 미검증이고 원격 required check 실패는 우회하지 않는다.
+
+- 내용 Gate 근거: 원본 365개 커밋 누락 없음, 앱 900개 mode/매핑 보존 및 Web 599개·Backend 277개 blob 동일, ML 9개 승인 경로/docstring 정규화 AST 동일을 독립 검토했다. 상태 문서의 마지막 변경은 이 결과를 바꾸지 않는다. [외부 GitHub 전달 검증](</Users/han/Documents/Codex/2026-10-02/task-2/github-pr-merge/verification.json>)은 이 컴퓨터에서 실제 최신 head·검사·PR/merge·backup·local 결과를 확인하며 갱신한다. 다른 clone에서는 해당 PR/Git와 관련 코드로 재확인한다.
