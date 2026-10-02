@@ -9,7 +9,7 @@
 - `PR까지`: 필요한 commit·push·PR 생성과 기존 검사 통과를 위한 구현·title/body 수정. merge·검사 삭제/우회/기준 완화는 제외.
 - `merge까지`: PR 범위와 아래 merge Gate·Squash merge, 미반영 변경이 없는 해당 branch/worktree의 안전 정리. 타인의 branch 삭제·운영 데이터/Secret/Permission 변경·배포 승인을 포함하지 않는다.
 - 이미 명확한 사용자 승인 범위는 반복 확인하지 않지만 대상·영향·권한이 달라지면 확인한다. force push·공유 history rebase/amend는 금지한다.
-- 이번 운영 문서 적용은 기존 main의 dirty 문서 초기 설정을 같은 위치에서 보존하는 한정 예외다. branch 준비·commit/push/PR/merge·원격 Ruleset 설정은 실행하지 않는다. 이후 변경에는 아래 작업 branch 정책을 적용한다. 지금의 dirty 문서를 자동 stash·이동·삭제하지 않는다.
+- 초기 운영 문서 적용 당시에는 main의 dirty 문서를 같은 위치에서 보존하는 한정 예외였고 branch 준비·commit/push/PR/merge·원격 Ruleset 설정을 실행하지 않았다. 이후 파일 변경에는 아래 작업 branch 정책을 적용한다. 기존 dirty 문서를 자동 stash·이동·삭제하지 않는다.
 
 ## 2. 결과와 작업공간
 
