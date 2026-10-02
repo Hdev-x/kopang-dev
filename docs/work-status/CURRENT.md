@@ -1,9 +1,9 @@
 # 개인 코팡 현재 작업
 
-> 갱신: 2026-10-02 · 현재 단계: 앱 경로·dev worktree 기록의 로컬 main 반영 완료. 진행 작업 없음.
+> 갱신: 2026-10-02 · 현재 단계: 앱·운영문서 결과의 GitHub Draft PR·검토·Ready·Squash merge 진행 중.
 
-- 개인 primary: `/Users/han/dev/projects/personal/kopang-refactored` (`main`, apps 경로의 앱·문서 결과 반영; 실제 HEAD는 Git에서 확인).
-- 이번 결과 작업공간: `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths` (`refactor/app-paths`). 현재 결과는 로컬 main에도 반영했고 이 worktree·branch는 보존한다. commit·HEAD는 Git에서 확인한다.
+- 개인 primary: `/Users/han/dev/projects/personal/kopang-refactored` (`main`, 앱·운영문서 결과 관리; 현재 HEAD/upstream은 Git에서 확인).
+- 이번 결과 작업공간: `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths` (`refactor/app-paths`). 이전 결과와 필요한 의존성을 이 worktree에 보존한다. PR/merge와 현재 commit·branch 관계는 Git/GitHub에서 확인한다.
 - 원격: [Hdev-x/kopang-refactored](https://github.com/Hdev-x/kopang-refactored) · 비공개 · 기본 브랜치 main.
 - 작업/Task/Gate 정본: [WORK](./WORK.md)의 앱 경로 이전 결과. 구조·검증 기준은 [목표 구조·이전 계획](../개인-리팩터링-구조-계획.md) 6–7절. 활성 운영은 [상태 규칙](./README.md)·[Git 규칙](../git-workflow.md).
 - 합의: [DECISIONS](./DECISIONS.md) · 필요한 미결: [OPEN-QUESTIONS](./OPEN-QUESTIONS.md).
@@ -11,8 +11,8 @@
 - 앱 이전 당시 승인: 2026-10-02 11:31:22Z 사용자의 `ㄱㄱ`는 운영문서 로컬 기준 커밋→작업 branch에서 세 앱 이동·필요 경로 수정→전후 검증→로컬 커밋을 포함한다. push·PR·merge/main 병합·CI/보호 설정·기능/스타일 통합은 제외.
 - 결과/한계: build/type·Backend package/test compile·합성 ML/HTTP·로그인 화면 전후 비교 통과. lint 기존 52 errors·6 warnings는 동일하며 실제 API/DB/결제·운영 모델은 미검증. 자세한 Task/Gate·근거는 WORK. 원본 365개 이력은 유지했으며 11:45:40Z 재개 승인 범위도 같았다.
 - worktree 위치: 사용자 요청으로 WYBU의 dev/worktrees/프로젝트/브랜치 배치에 맞춰 Git worktree move를 완료했다. 위치 이동 당시 branch `refactor/app-paths`·HEAD `43addd0` 보존. 위치 변경 당시 미커밋이었던 CURRENT·WORK는 관련 커밋 `4e72323`으로 정리했다. 위치 검증 근거는 WORK.
-- 최신 반영: 사용자의 `머지까지 해줘` 요청 범위에서 관련 문서 커밋과 로컬 main fast-forward 병합을 완료했다. 원격 main은 `183600ee` 기준으로 아직 전달하지 않았으며 push·PR·원격 merge·branch/worktree 삭제는 하지 않음. 최종 상태·원격 차이는 Git과 WORK의 근거에서 확인한다.
-- 다음 행동 하나: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 먼저 다룰 후속 범위를 결정한다. 새 결과는 최신 main의 새 작업 branch에서 진행하며 원격 전달은 별도 요청으로 판단한다.
+- 최신 승인: 사용자의 `푸쉬 피알 스쿼시 머지로 해야지` 정정에 따라 작업 branch push→Draft PR→검토→Ready→Squash merge를 진행한다. 앞선 assistant의 로컬 병합만 해석을 대체한다. 원격 전달 기준은 확인한 main `183600ee`; 실제 PR/Squash commit과 원격·로컬 상태는 Git/GitHub 및 WORK의 근거에서 확인한다. 보호/검사 우회·force push·공유 이력 재작성·원본 팀/WYBU/펫케어 변경은 하지 않는다.
+- 다음 행동 하나: 원격 main 기준 전체 diff·기존 검증/한계를 확인해 Draft PR을 만들고 최신 head 검토와 GitHub merge 조건을 충족한다. Squash 뒤 로컬 FF 이력은 복구 가능한 backup으로 보존하고 main을 원격 결과와 동기화한다.
 
 ## 완료한 기반과 근거
 

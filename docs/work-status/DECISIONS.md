@@ -58,6 +58,13 @@
 
 ### 2026-10-02 — 앱·위치 결과의 로컬 main 반영
 
-- 사용자 승인: `머지까지 해줘`. 이번 요청은 관련 문서 커밋과 로컬 main 병합까지이며 원격 push·PR·merge 및 branch/worktree 삭제는 제외한다. 과거 앱 이전·위치 이동 단계의 제외 범위는 당시 기록으로 보존한다.
+- 당시 해석/실행: assistant가 `머지까지 해줘`를 로컬 main 반영으로 좁게 해석해 관련 문서 commit·FF를 수행했다. 이후 사용자 정정으로 아래 GitHub 전달 범위가 적용된다. 과거 앱 이전·위치 이동의 제외 범위는 당시 기록으로 보존한다.
 - 적용: clean main이 `refactor/app-paths`의 조상이므로 `--ff-only`로 반영한다. 원본 365개 이력과 이미 만든 앱 결과 커밋을 보존하며 Squash/rebase/force push로 이력을 바꾸지 않는다. 원격 PR/Squash 기본 절차를 새 정책으로 변경한 것은 아니다.
 - 검증/한계: 실제 반영·Git 상태와 문서 정합성·앱 소스 동일성은 WORK의 결과로 확인. 기존 lint 실패 및 실제 API/DB/결제/운영 모델 미검증은 완료로 승격하지 않는다.
+
+
+### 2026-10-02 — 작업 branch push·Draft PR·Ready·Squash merge
+
+- 사용자 정정: `푸쉬 피알 스쿼시 머지로 해야지`. 앞선 assistant의 local-only 해석을 대체하며 작업 branch push→Draft PR 생성→최신 head 검토/검증→Ready→Squash merge를 승인한다. 원본 365개 이력과 기여자를 보존한다.
+- 적용: 최신 원격 main 기준 전체 diff와 실제 GitHub merge 조건을 확인한다. 로컬 main FF 계열은 복구 가능한 backup을 보존한 뒤 원격 Squash 결과와 동기화한다. 보호/검사 우회·force push·공유 이력 재작성·원본 팀/WYBU/펫케어 변경은 포함하지 않는다.
+- 실제 상태/한계: PR·merge·Squash SHA는 Git/GitHub가 정본이고 내용 Gate·기존 lint 실패·실제 API/DB/결제/운영 모델 미검증은 WORK·PR에 기록한다. 확인한 권한·이 사용자 승인을 되묻지 않고 같은 작업을 완료한다.
