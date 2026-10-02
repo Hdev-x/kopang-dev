@@ -3,7 +3,7 @@ user_profiles.csv의 유저별 피처값과 일치하는 "원천 이벤트 row"�
 (경로③ 일원화: 시드된 이벤트를 aggregate_profiles.sql로 집계하면 프로필이 재현됨)
 
 사용법:
-  python3 seed_db.py          # ml/seed_events.sql 생성
+  python3 seed_db.py          # apps/ml/seed/seed_events.sql 생성
   psql -d kopang -f seed_events.sql
 
 전제: DDL 실행 + users/categories/products는 \\copy로 로드 완료 상태 (README.md 참고)

@@ -20,10 +20,10 @@ INSERT 한다. 상시 서버가 아니라 필요할 때만 수동 실행한다.
   - 되돌리기: 유저는 '@kopang.demo' 도메인, 주문은 payment_key='DEMO_SEED' 마커 (--undo)
 
 사용 (프로젝트 루트에서):
-  python3 ml/demo/daily_activity.py --dry-run        # 무엇이 얼마나 들어갈지만 확인 (쓰기 없음)
-  python3 ml/demo/daily_activity.py                  # 오늘자 활동 생성
-  python3 ml/demo/daily_activity.py --backfill 25    # 오늘 포함 최근 26일치 주문까지 생성
-  python3 ml/demo/daily_activity.py --undo           # 데모 계정(@kopang.demo)과 그 주문 삭제
+  python3 apps/ml/demo/daily_activity.py --dry-run        # 무엇이 얼마나 들어갈지만 확인 (쓰기 없음)
+  python3 apps/ml/demo/daily_activity.py                  # 오늘자 활동 생성
+  python3 apps/ml/demo/daily_activity.py --backfill 25    # 오늘 포함 최근 26일치 주문까지 생성
+  python3 apps/ml/demo/daily_activity.py --undo           # 데모 계정(@kopang.demo)과 그 주문 삭제
 
 주의: 공유 Supabase 에 쓰므로 팀 DB 상의 후 실행. 실행 전 --dry-run 으로 규모를 먼저 본다.
 """
@@ -49,7 +49,7 @@ GIVEN = ["민준", "서연", "도윤", "지우", "예준", "하은", "주원", "
 
 def connect():
     props = {}
-    with open("backend/src/main/resources/application-dev.properties", encoding="utf-8") as f:
+    with open("apps/backend/src/main/resources/application-dev.properties", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line.startswith("spring.datasource."):

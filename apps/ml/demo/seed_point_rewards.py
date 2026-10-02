@@ -21,9 +21,9 @@ seed_point_rewards.py — 구매확정 포인트 적립 이력을 소급 생성�
   - 주문 선택은 order_id 순으로 결정적이다 — 같은 인자로 다시 돌려도 같은 대상
 
 사용 (프로젝트 루트에서):
-  ml/.venv/bin/python ml/demo/seed_point_rewards.py --dry-run
-  ml/.venv/bin/python ml/demo/seed_point_rewards.py
-  ml/.venv/bin/python ml/demo/seed_point_rewards.py --undo
+  apps/ml/.venv/bin/python apps/ml/demo/seed_point_rewards.py --dry-run
+  apps/ml/.venv/bin/python apps/ml/demo/seed_point_rewards.py
+  apps/ml/.venv/bin/python apps/ml/demo/seed_point_rewards.py --undo
   ... --general 80 --membership 70 --days 14
 
 주의: 공유 Supabase 쓰기. 백엔드를 내리고 실행한다(세션 풀러 15 커넥션 제한).

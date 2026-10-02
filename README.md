@@ -92,10 +92,11 @@
 ## 폴더 구조
 
 ```
-kopang/
-├── frontend/   # React 사용자·관리자·데스크톱 웹
-├── backend/    # Spring Boot API·인증·배치·대응·측정
-├── ml/         # 이탈 예측 모델·FastAPI 서빙·데모 데이터
+kopang-refactored/
+├── apps/
+│   ├── web/      # React 사용자·관리자·데스크톱 웹
+│   ├── backend/  # Spring Boot API·인증·배치·대응·측정
+│   └── ml/       # 이탈 예측 모델·FastAPI 서빙·데모 데이터
 ├── docs/       # 요구사항·API·DB 명세, README 이미지
 └── outputs/    # 최종 발표자료 등 공유 산출물
 ```
@@ -106,17 +107,23 @@ PostgreSQL 준비 후 세 파트를 각각 실행
 
 | 파트 | 명령 | 비고 |
 | --- | --- | --- |
-| Backend (:8080) | `cd backend && ./gradlew bootRun` | `src/main/resources/application-dev.properties`에 DB·JWT·OAuth·S3·결제·메일 키 설정 (Git 미포함) |
-| ML (:8000) | `pip install -r ml/requirements.txt` → `uvicorn ml.model.serve:app --port 8000` | 학습·시드는 [ml/README.md](ml/README.md) |
-| Frontend | `cd frontend && npm install && npm run dev` | `/api` 요청은 Vite proxy가 backend로 전달 |
+| Backend (:8080) | `cd apps/backend && ./gradlew bootRun` | `src/main/resources/application-dev.properties`에 DB·JWT·OAuth·S3·결제·메일 키 설정 (Git 미포함) |
+| ML (:8000) | `pip install -r apps/ml/requirements.txt` → `uvicorn apps.ml.model.serve:app --port 8000` | 학습·시드는 [apps/ml/README.md](apps/ml/README.md) |
+| Frontend | `cd apps/web && npm ci && npm run dev` | `/api` 요청은 Vite proxy가 backend로 전달 |
 
 ## 문서·발표자료
 
 - [요구사항 정의서](docs/요구사항_정의서.xlsx) · [API 명세서](docs/API_명세서.md) · [DB 스키마](docs/DB_스키마.xlsx)
+- [개인 리팩터링 목표 구조·이전 계획](docs/개인-리팩터링-구조-계획.md) — 개인 저장소의 후속 개선 계획
+- [개인 작업맥락 운영 제안·적용 기록](docs/개인-작업맥락-운영-제안.md) — 최소 운영 규칙의 조사 근거와 적용 범위
+- [개인 작업 현재 상태](docs/work-status/CURRENT.md) · [작업 계획](docs/work-status/WORK.md) · [작업 규칙](AGENTS.md)
+- [작업 상태 운영](docs/work-status/README.md) · [개인 Git 규칙](docs/git-workflow.md) · [WYBU 운영규칙 대조](docs/WYBU-운영규칙-대조.md)
 - [최종 발표자료](outputs/kopang-발표-최종.pptx)
 - [ML 이탈방지 구조 정리](docs/_/ML_이탈방지_구조_정리.md)
 
 ## 협업 규칙
+
+> 아래는 원팀 프로젝트 당시 협업 기록으로 보존한다. 개인 저장소의 현재 운영은 [AGENTS](AGENTS.md)를 따르며, 개인 branch·PR·merge 정책은 [개인 Git 규칙](docs/git-workflow.md)에 기록한다. 서버 설정 활성화는 별도 확인한다.
 
 - 브랜치: `main`(발표·배포) ← `develop`(통합) ← `feature/*`(개인 작업)
 - 모든 변경은 `feature/*` → `develop` PR, 리뷰어 1명 이상 승인 후 머지

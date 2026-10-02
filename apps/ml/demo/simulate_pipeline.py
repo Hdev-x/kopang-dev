@@ -22,9 +22,9 @@ simulate_pipeline.py — 이탈방지 파이프라인이 "매일 돌아온 것�
   - 실제 서비스 코드는 demo_tag 를 읽지도 쓰지도 않는다 (조회 결과에 영향 없음)
 
 사용 (프로젝트 루트에서):
-  ml/.venv/bin/python ml/demo/simulate_pipeline.py --dry-run
-  ml/.venv/bin/python ml/demo/simulate_pipeline.py --from 2026-07-14 --to 2026-07-28
-  ml/.venv/bin/python ml/demo/simulate_pipeline.py --undo
+  apps/ml/.venv/bin/python apps/ml/demo/simulate_pipeline.py --dry-run
+  apps/ml/.venv/bin/python apps/ml/demo/simulate_pipeline.py --from 2026-07-14 --to 2026-07-28
+  apps/ml/.venv/bin/python apps/ml/demo/simulate_pipeline.py --undo
 
 주의: 공유 Supabase 쓰기. 먼저 --dry-run.
 """

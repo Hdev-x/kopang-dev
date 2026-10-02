@@ -173,7 +173,7 @@ export function Button({ variant = "primary", children, onClick }: Props) {
 ## 5. 🤖 바이브코딩 규칙 (AI에게 시킬 때)
 **그냥 "예쁜 페이지 만들어줘" 금지.** 항상 이 가드레일을 프롬프트에 넣는다:
 
-> "`frontend/DESIGN_SYSTEM.md`의 토큰과 기존 공통 컴포넌트(`Button`, `Card`, `Input`, `Layout`)를 사용해서 [화면] 만들어줘.
+> "`apps/web/DESIGN_SYSTEM.md`의 토큰과 기존 공통 컴포넌트(`Button`, `Card`, `Input`, `Layout`)를 사용해서 [화면] 만들어줘.
 > - 색/간격/폰트는 반드시 `var(--토큰)` 사용, 하드코딩 금지
 > - 새 컴포넌트 만들지 말고 기존 것 조립
 > - 모바일 퍼스트, `.container`로 감싸기

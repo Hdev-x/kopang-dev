@@ -5,7 +5,7 @@ seed_metrics.py — churn_daily_metric 백필 (실제 집계)
 배경:
   대시보드 KPI 4종(고위험 수·이탈률·전환율·기여 매출)과 주간 이탈률 추이는
   churn_daily_metric 을 읽는다. 그런데 이 테이블에 INSERT 하는 코드가
-  초기 시드(ml/seed/seed_db.py)뿐이라, 시드 시점(2026-07-02) 이후로 갱신이 멈춰 있다.
+  초기 시드(apps/ml/seed/seed_db.py)뿐이라, 시드 시점(2026-07-02) 이후로 갱신이 멈춰 있다.
   → 대시보드가 몇 주 전 숫자를 "오늘"인 것처럼 보여준다.
 
   이 스크립트는 그 구멍을 **실제 테이블 집계로** 메운다. 난수 생성이 아니다.
@@ -33,9 +33,9 @@ seed_metrics.py — churn_daily_metric 백필 (실제 집계)
   - 되돌리기: --undo 는 지정 범위만 삭제 (기본 범위 = 시드 이후 구간이라 시드가 안 지워진다)
 
 사용 (프로젝트 루트에서):
-  ml/.venv/bin/python ml/demo/seed_metrics.py --dry-run   # 계산 결과만 출력 (쓰기 없음)
-  ml/.venv/bin/python ml/demo/seed_metrics.py             # 백필 실행
-  ml/.venv/bin/python ml/demo/seed_metrics.py --undo      # 백필분 삭제
+  apps/ml/.venv/bin/python apps/ml/demo/seed_metrics.py --dry-run   # 계산 결과만 출력 (쓰기 없음)
+  apps/ml/.venv/bin/python apps/ml/demo/seed_metrics.py             # 백필 실행
+  apps/ml/.venv/bin/python apps/ml/demo/seed_metrics.py --undo      # 백필분 삭제
   ... --from 2026-07-03 --to 2026-07-28                   # 범위 지정 (기본값이 이것)
 
 주의: 공유 Supabase 에 쓰므로 팀 공지 후 실행. 먼저 --dry-run.
