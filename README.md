@@ -98,6 +98,7 @@ kopang-refactored/
 │   ├── backend/  # Spring Boot API·인증·배치·대응·측정
 │   └── ml/       # 이탈 예측 모델·FastAPI 서빙·데모 데이터
 ├── docs/       # 요구사항·API·DB 명세, README 이미지
+├── work-status/ # 현재 작업·계획·결정·미결 질문
 └── outputs/    # 최종 발표자료 등 공유 산출물
 ```
 
@@ -116,8 +117,8 @@ PostgreSQL 준비 후 세 파트를 각각 실행
 - [요구사항 정의서](docs/요구사항_정의서.xlsx) · [API 명세서](docs/API_명세서.md) · [DB 스키마](docs/DB_스키마.xlsx)
 - [개인 리팩터링 목표 구조·이전 계획](docs/개인-리팩터링-구조-계획.md) — 개인 저장소의 후속 개선 계획
 - [개인 작업맥락 운영 제안·적용 기록](docs/개인-작업맥락-운영-제안.md) — 최소 운영 규칙의 조사 근거와 적용 범위
-- [개인 작업 현재 상태](docs/work-status/CURRENT.md) · [작업 계획](docs/work-status/WORK.md) · [작업 규칙](AGENTS.md)
-- [작업 상태 운영](docs/work-status/README.md) · [개인 Git 규칙](docs/git-workflow.md) · [WYBU 운영규칙 대조](docs/WYBU-운영규칙-대조.md)
+- [개인 작업 현재 상태](work-status/CURRENT.md) · [작업 계획](work-status/WORK.md) · [작업 규칙](AGENTS.md)
+- [작업 상태 운영](work-status/README.md) · [개인 Git 규칙](docs/git-workflow.md) · [WYBU 운영규칙 대조](docs/WYBU-운영규칙-대조.md)
 - [최종 발표자료](outputs/kopang-발표-최종.pptx)
 - [ML 이탈방지 구조 정리](docs/_/ML_이탈방지_구조_정리.md)
 

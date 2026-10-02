@@ -19,14 +19,14 @@
 ### 2026-10-02 — 최소 운영안을 활성화할지와 파일 위치
 
 - 이전 상태: 제안 단계 미결.
-- 해결: 사용자의 `ㄱㄱ` 승인에 따라 root AGENTS와 `docs/work-status`의 CURRENT·DECISIONS·OPEN-QUESTIONS를 적용했다. HANDOFF는 필요 시 추가하고 공유 상태 문서는 대표 작성자 한 명이 담당한다.
-- 근거: [최소 운영체계 채택 결정](./DECISIONS.md), [운영 제안 적용 기록](../개인-작업맥락-운영-제안.md).
+- 해결: 사용자의 `ㄱㄱ` 승인에 따라 root AGENTS와 당시 `docs/work-status`의 CURRENT·DECISIONS·OPEN-QUESTIONS를 적용했다. 이후 root 배치 결정으로 현재 위치는 `work-status/`다. HANDOFF는 필요 시 추가하고 공유 상태 문서는 대표 작성자 한 명이 담당한다.
+- 근거: [최소 운영체계 채택 결정](./DECISIONS.md), [운영 제안 적용 기록](../docs/개인-작업맥락-운영-제안.md).
 - 범위: 운영 파일 적용만 해결. 앱 코드 이전 실행·세부 Git 정책·학습 기록은 승인/결정된 것으로 승격하지 않는다.
 
 ### 2026-10-02 — WORK 역할과 개인 Git 기본 절차
 
 - 해결: 부분 적용을 보완하라는 사용자 요청으로 WORK에 단계/Task/Gate를 두고 상태 README와 Git 문서·PR/Issue 양식을 적용했다. main·짧은 branch·worktree·PR·Squash, 권한·검증·충돌/정리 기준이 문서화됐다.
-- 근거: [보완 결정](./DECISIONS.md), [원본 대조표](../WYBU-운영규칙-대조.md).
+- 근거: [보완 결정](./DECISIONS.md), [원본 대조표](../docs/WYBU-운영규칙-대조.md).
 - 한계: 실제 commit/push/merge·원격 설정/CI 적용·앱 이동 승인은 이번에 부여/실행되지 않았다. 서버 설정과 환경만 위 미결로 유지한다.
 
 

@@ -1,6 +1,6 @@
 # 개인 작업 상태 운영 규칙
 
-> 적용: 2026-10-02 · Agent 진입·권한은 [AGENTS](../../AGENTS.md), Git 절차는 [Git 규칙](../git-workflow.md).
+> 적용: 2026-10-02 · Agent 진입·권한은 [AGENTS](../AGENTS.md), Git 절차는 [Git 규칙](../docs/git-workflow.md).
 
 ## 정본과 읽는 순서
 
@@ -13,7 +13,7 @@
 | HANDOFF (필요 시) | 실제 중단 작업의 재개 맥락 |
 | Worklog (필요 시) | Git·PR로 남지 않는 중요한 비민감 실행 이력 |
 | Git/GitHub | branch·diff·commit·push·PR·merge의 실제 상태 |
-| [구조 계획](../개인-리팩터링-구조-계획.md) | 합의한 목표 구조·계약·이전 방향·검증 기준; 실행 Task 상태는 WORK |
+| [구조 계획](../docs/개인-리팩터링-구조-계획.md) | 합의한 목표 구조·계약·이전 방향·검증 기준; 실행 Task 상태는 WORK |
 
 Current→관련 Work/계획→필요 결정/질문/인계만 읽는다. Task·Gate 상태를 Current·Issue·제안·로그에 반복 관리하지 않는다. Current에는 merge 뒤에도 유효한 작업 경계와 관찰 조건을 남기며, 일회성 전달 작업을 닫기 위한 상태만의 PR을 만들지 않는다.
 
@@ -53,10 +53,10 @@ Current→관련 Work/계획→필요 결정/질문/인계만 읽는다. Task·G
 
 ## HANDOFF·Worklog·문서 배치
 
-- HANDOFF는 실제 미완료 중단/다른 작성자 재개에만 `docs/work-status/HANDOFF.md`로 생성한다. 목표·범위·마지막 검증·미검증·남은 일·첫 행동·정확한 경로/revision/dirty 상태·보존 위치와 관련 계획을 적는다. 실제 재개 때 소비됨을 표시한다. 일반 응답 자동저장·Checkpoint만을 위한 commit은 금지한다.
+- HANDOFF는 실제 미완료 중단/다른 작성자 재개에만 `work-status/HANDOFF.md`로 생성한다. 목표·범위·마지막 검증·미검증·남은 일·첫 행동·정확한 경로/revision/dirty 상태·보존 위치와 관련 계획을 적는다. 실제 재개 때 소비됨을 표시한다. 일반 응답 자동저장·Checkpoint만을 위한 commit은 금지한다.
 - 일반 dirty HANDOFF는 WYBU의 정식 clean-commit Checkpoint와 구분한다. 저장 당시 사실/증거를 소급 덮어쓰지 않고 재개/정정 사항을 덧붙인다. 기존 dirty 문서는 사실대로 보존·인계하며 기록 때문에 commit하지 않는다.
-- Git/PR로 설명되지 않는 중요한 실행·실패·검증·인계 이력이 처음 생길 때만 `docs/work-status/logs/YYYY-MM-DD.md`에 날짜·대상·요약·증거/한계·필요한 다음 행동을 append-only로 남긴다. 기존 기록의 수정은 정정 항목으로 남긴다. 상시 기록/별도 로그 index/상태 복제는 금지한다. 원팀 외부 worklog는 갱신하지 않는다.
-- root는 소개 README와 AGENTS, 도구가 요구하는 manifest/config 위주로 유지한다. 운영·설계는 docs, 상태는 이 폴더, GitHub template은 .github. 기존 팀 문서를 이 규칙 때문에 옮기거나 삭제하지 않는다.
+- Git/PR로 설명되지 않는 중요한 실행·실패·검증·인계 이력이 처음 생길 때만 `work-status/logs/YYYY-MM-DD.md`에 날짜·대상·요약·증거/한계·필요한 다음 행동을 append-only로 남긴다. 기존 기록의 수정은 정정 항목으로 남긴다. 상시 기록/별도 로그 index/상태 복제는 금지한다. 원팀 외부 worklog는 갱신하지 않는다.
+- root에는 소개 README·AGENTS·`work-status/`와 도구가 요구하는 manifest/config를 둔다. 현재 작업·계획·결정·질문·필요 인계/로그는 root `work-status/`, 명세·설계·Git 절차 문서는 `docs/`, GitHub template은 `.github/`에 둔다. 기존 팀 문서를 이 규칙 때문에 옮기거나 삭제하지 않는다.
 - 제안은 기존 문서를 보존하며 신규 미채택안은 필요 시 `docs/proposals/<topic>.md`에 날짜·상태·배경·대안·영향/미결·결론/반영 링크를 적는다. 초안·검토 중·채택·일부 채택·보류·기각을 구분한다. 제안 존재/채택은 실행 승인이 아니며 미결 상태는 질문 정본을 참조한다.
 - 새 이름은 도구/언어 관례를 우선하고 일반 신규 파일은 짧은 kebab-case를 사용한다. 이미 채택한 CURRENT/WORK/DECISIONS/OPEN-QUESTIONS와 한국어 팀 문서는 보존한다. 기능 코드는 함께 배치하고 실제 반복/공유 필요가 생길 때만 계층·공통 패키지를 분리한다.
 - 새 생성물·환경값·캐시·실행 산출 DB/로그·빌드·의존성은 commit하지 않고 ignore 여부를 확인한다. 빈 폴더·미래용 schema·소개 문서·별도 상태 index는 만들지 않는다.

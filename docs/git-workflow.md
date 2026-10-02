@@ -16,7 +16,7 @@
 - 개인 기본 branch는 main. 장기 develop/영역 branch를 새로 만들지 않고, 한 검증 가능한 결과 또는 계획의 한 단계에 짧은 branch·worktree·PR 하나를 대응시킨다. Task별로 branch를 쪼개지 않는다.
 - 새 결과는 실제 최신 origin/main을 확인하고 branch/worktree를 준비한다. main은 확인·최신화용이며 초기 설정 예외 뒤 직접 수정·직접 push하지 않는다. 원격 확인이 실패하면 최신이라고 주장하지 않는다. remote가 없는 경우에만 확인한 local main을 기준으로 한다.
 - 첫 수정 전 status·HEAD·branch·worktree와 기존 dirty 파일을 확인한다. 같은 결과의 기존 적합한 worktree는 재사용한다. 새 작업은 기존 미커밋 문서와 겹치거나 기준에 포함되지 않는 규칙이 있으면 먼저 보존/이어가기 방법을 구체화한다. 현재 설정 문서를 포함하지 않은 깨끗한 origin/main worktree를 무작정 만들지 않는다.
-- worktree 경로는 이 저장소와 실제 작업환경에서 정하며 WYBU 절대경로를 복사하지 않는다. Codex managed worktree는 사용자가 요청했을 때 만들고 도구가 반환한 위치를 사용한다. 다른 worktree를 이동/재생성하지 않는다.
+- 파일을 바꾸는 간단 작업(Fast Path) 또는 계획의 한 단계(Stage)에는 branch·worktree·PR 하나를 대응시킨다. 수동 worktree는 `/Users/han/dev/worktrees/kopang-refactored/<type>/<task>`에 만들고 branch 이름을 경로에 그대로 대응시킨다. 예: `docs/root-work-status` → `/Users/han/dev/worktrees/kopang-refactored/docs/root-work-status`. 같은 결과의 적합한 기존 worktree는 재사용한다. Codex managed worktree는 해당 작업에서 사용자가 명시적으로 요청했을 때 만들고 도구가 반환한 등록 위치를 사용한다. 이미 같은 결과를 이어가는 managed worktree는 재사용하며 다른 worktree를 이동/재생성하지 않는다.
 - 병렬 Writer는 작업공간을 분리하고 Main이 소유 파일·의존 순서를 지정한다. 동일 파일·worktree 동시 쓰기 금지, 공유 상태 문서는 Main 단일 Writer. 선행 결과가 필요하면 해당 PR이 merge된 최신 main에서 다음 결과를 시작한다.
 
 ## 3. Branch와 commit
