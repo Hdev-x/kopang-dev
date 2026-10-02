@@ -1,16 +1,18 @@
 # 개인 코팡 현재 작업
 
-> 갱신: 2026-10-02 · 현재 단계: 앱 최상위 경로 이전·로컬 비교 검증 완료. 진행 작업 없음.
+> 갱신: 2026-10-02 · 현재 단계: 앱·위치 변경 결과의 로컬 main 병합 진행 중.
 
 - 개인 primary: `/Users/han/dev/projects/personal/kopang-refactored` (`main`, 문서 기준 `9ec5237`, 기존 앱 배치 유지).
-- 이번 결과 작업공간: `/Users/han/Documents/Codex/2026-10-02/task-2/kopang-app-paths` (`refactor/app-paths`). 현재 결과는 이 worktree에 있으며 commit·HEAD는 Git에서 확인한다.
+- 이번 결과 작업공간: `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths` (`refactor/app-paths`). 현재 결과는 이 worktree에 있으며 commit·HEAD는 Git에서 확인한다.
 - 원격: [Hdev-x/kopang-refactored](https://github.com/Hdev-x/kopang-refactored) · 비공개 · 기본 브랜치 main.
 - 작업/Task/Gate 정본: [WORK](./WORK.md)의 앱 경로 이전 결과. 구조·검증 기준은 [목표 구조·이전 계획](../개인-리팩터링-구조-계획.md) 6–7절. 활성 운영은 [상태 규칙](./README.md)·[Git 규칙](../git-workflow.md).
 - 합의: [DECISIONS](./DECISIONS.md) · 필요한 미결: [OPEN-QUESTIONS](./OPEN-QUESTIONS.md).
 - 현재 실제 앱 경로: `apps/web/`, `apps/backend/`, `apps/ml/`. 별도 `refactor/app-paths` branch/worktree에서 이동과 필수 경로 수정·전후 검증을 완료했다. 프론트 내부 경계·반응형 통합은 후속 범위다.
-- 승인: 2026-10-02 11:31:22Z 사용자의 `ㄱㄱ`는 운영문서 로컬 기준 커밋→작업 branch에서 세 앱 이동·필요 경로 수정→전후 검증→로컬 커밋을 포함한다. push·PR·merge/main 병합·CI/보호 설정·기능/스타일 통합은 제외.
+- 앱 이전 당시 승인: 2026-10-02 11:31:22Z 사용자의 `ㄱㄱ`는 운영문서 로컬 기준 커밋→작업 branch에서 세 앱 이동·필요 경로 수정→전후 검증→로컬 커밋을 포함한다. push·PR·merge/main 병합·CI/보호 설정·기능/스타일 통합은 제외.
 - 결과/한계: build/type·Backend package/test compile·합성 ML/HTTP·로그인 화면 전후 비교 통과. lint 기존 52 errors·6 warnings는 동일하며 실제 API/DB/결제·운영 모델은 미검증. 자세한 Task/Gate·근거는 WORK. 원본 365개 이력은 유지했으며 11:45:40Z 재개 승인 범위도 같았다.
-- 다음 행동 하나: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 먼저 다룰 후속 범위를 결정한다. 원격 전달은 별도 요청으로 판단한다.
+- worktree 위치: 사용자 요청으로 WYBU의 dev/worktrees/프로젝트/브랜치 배치에 맞춰 Git worktree move를 완료했다. branch `refactor/app-paths`·HEAD `43addd0` 보존. 위치 변경 당시 CURRENT·WORK만 미커밋으로 보존했으며, 최신 로컬 병합 요청에서 이 기록을 커밋 대상으로 확인했다. 위치 검증 근거는 WORK.
+- 최신 승인: 사용자의 `머지까지 해줘` 요청에 따라 관련 문서 커밋과 로컬 main 병합만 진행한다. main이 작업 branch의 조상이어서 fast-forward만 허용하며 push·PR·원격 merge·branch/worktree 삭제는 하지 않음.
+- 다음 행동 하나: 관련 문서·diff 검증 후 로컬 main에 반영하고 실제 상태를 확인한다.
 
 ## 완료한 기반과 근거
 
