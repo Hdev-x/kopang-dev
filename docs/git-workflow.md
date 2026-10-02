@@ -32,10 +32,16 @@
 - Issue는 선택이다. backlog·재현/범위 논의·담당/우선순위 공유·여러 PR 묶음이 실제 필요할 때 [.github 작업 양식](../.github/ISSUE_TEMPLATE/work.md)을 사용한다. Issue 생성은 그 외부 행동이 요청 범위에 있을 때만 한다.
 - 계획 작업의 상태는 WORK가 정본이고 Issue는 요약/탐색이다. 작은 backlog는 Issue 자체로 충분하다. Task 상태를 Issue/WORK에 중복 복제하지 않는다. Issue 연결만을 위해 Work를 만들지 않는다.
 - PR은 하나의 검증 가능한 결과만 포함한다. 제목: `feat|fix|refactor|docs|chore: 결과`. [활성 PR 양식](../.github/pull_request_template.md)의 요약·주요 변경·변경 이유·검증·확인을 작성한다.
-- 달라진 동작·이유·범위·한계와 실제 검증 방법/결과를 구분한다. 계획 경로는 정확한 WORK 단계/Gate 링크, Issue가 있으면 Refs, 마지막 구현 PR이면 Closes를 연결한다. PR 번호를 제목에 수동 추가하지 않는다.
-- 복잡한 분기/상태가 글보다 명확할 때만 표·text tree·Mermaid를 추가한다. 분류/목록/중첩이 이해를 돕는 만큼 사용하고 제목·결과는 간결한 한국어로 쓴다. 명사형·굵은 분류 형식을 위해 이해하기 어려운 문장을 강제하지 않는다.
+- 요약은 `> **결과:** 내용` card로, 주요 변경은 굵은 분류와 중첩 목록으로, 변경 이유는 실제 최상위 목록으로 작성한다. 검증은 `실행한 명령 또는 확인 방법`·`결과` 아래 중첩 목록이며 두 항목 사이와 변경 분류 사이에 빈 줄을 유지한다. 달라진 동작·이유·범위·한계와 실제 검증 방법/결과를 구분한다. 계획 경로는 정확한 WORK 단계/Gate 링크, Issue가 있으면 Refs, 마지막 구현 PR이면 Closes를 연결한다. PR 번호를 제목에 수동 추가하지 않는다.
+- 복잡한 분기/상태가 글보다 명확할 때만 표·text tree·Mermaid를 추가한다. 분류/목록/중첩이 이해를 돕는 만큼 사용하고 제목·결과는 간결한 한국어로 쓴다. 원본의 간결한 결과 중심 설명을 유지하되 제품 고유 WP ID는 강제하지 않는다.
 - body-file로 제출할 때도 정확한 텍스트 파일과 양식을 사용한다. 올리기 전 전체 diff·의도하지 않은 파일·비밀정보와 실제 head/base를 확인한다.
 - 한 세션에 구현·필요 검증을 마치면 Ready가 기본. 여러 세션/인계·다른 작업의 의존·조기 review·실제 CI 중간 검증 필요가 있으면 첫 의미 있는 commit 이후 Draft. Draft는 검증하지 않은 것을 완료로 채우지 않고 Ready 전 실제 결과와 확인 항목을 완성한다.
+
+### PR 형식 자동검사
+
+- [PR Check workflow](../.github/workflows/pr-check.yml)는 PR opened/edited/reopened/synchronize/ready_for_review/converted_to_draft 이벤트에서 실행한다. read-only contents 권한, pinned checkout, 2분 timeout, 동일 PR 실행 취소를 유지한다. WYBU 제품 `tests/*.test.mjs` 대신 [checker 테스트](../tests/pr-check.test.mjs)만 실행하고 [형식 검사](../scripts/pr-check.mjs)로 실제 이벤트 title/body/draft를 검사한다.
+- Draft는 제목·heading·요약 card·목록 여백을, Ready는 실제 내용·분류/중첩·이유 목록·검증·4개 확인 항목 완료까지 검사한다. `refactor`는 코팡 허용 type으로 추가했다.
+- 이 검사는 작성 사실·소스 정상·WORK 관계·secret·승인을 증명하지 않는다. 등록/실행·실패/통과는 최신 PR head에서 직접 확인한다. 로컬 파일 추가만으로 자동 검사 성공이나 required 보호를 주장하지 않는다.
 
 ## 5. 검증과 merge Gate
 
@@ -56,13 +62,14 @@ Ready PR 제출·Ready 전환·merge 전 다음을 실제로 확인한다. 중�
 - 다른 작업 변경이 필요하거나 충돌이 생기면 승인된 작업 branch에서 최신 main을 merge해 다시 검증한다. dirty 파일을 보호하고 충돌을 임의 ours/theirs로 덮어쓰지 않는다. rebase/force push로 공유 이력을 바꾸지 않는다.
 - worktree는 파일을 분리할 뿐 코드 충돌을 막지 않는다. 작은 결과·명확한 소유권·빠른 검증으로 충돌 범위를 줄인다.
 - merge 승인에 포함된 정리는 정확한 PR merge와 미커밋·미전송·미반영 변경 없음부터 확인한다. 대상에 다른 작업/필요한 ignored 파일이 있으면 보존하고 제거하지 않는다.
+- Squash commit tree가 최종 PR head와 같고 기존 local 변경이 모두 반영됐는지 확인한다. 필요한 파일과 복구용 Git bundle·worktree archive는 저장소 밖에 보존하고 primary main을 origin/main과 안전하게 동기화한다. 이번 결과만 정리한 종료 상태는 main/origin/main 동일·clean·작업 refs/worktree 제거로 확인하며 backup branch는 최종 작업 목록에 남기지 않는다. 관련 없는 refs/worktree·외부 검증 자료는 보존하고 reflog expire·복구 불가능한 purge를 하지 않는다.
 - 해당 remote branch→Git을 통한 worktree 제거→local branch 정리 순서. managed worktree는 앱의 정리 도구를 사용한다. Finder/rm으로 worktree를 먼저 지우지 않는다.
 - Squash 때문에 Git의 일반 merged 판정과 다를 수 있으므로 local branch 강제 삭제가 필요한 경우도 실제 PR merge·모든 변경 반영·백업 필요 없음이 확인된 해당 branch에만 적용한다. 확인되지 않으면 삭제하지 않는다.
 
 ## 7. CI·보호·workflow 확장
 
-- 이번에는 문서 template만 추가했고 검사 script·GitHub Actions·Ruleset·Secret·권한 설정은 만들거나 변경하지 않았다. 자동 PR 검사/보호 활성화와 GitHub 적용은 미확인이다. 로컬 template·규칙 채택은 서버 강제와 다르다.
-- WYBU PR 검사기는 특정 제목/중첩 형식 검사이며 Issue/Work 관계·실제 검증 진실성·승인·merge Gate를 자동 확인하지 않는다. 원본 workflow는 WYBU Node 제품 테스트도 실행하므로 복사하지 않는다.
+- 초기 운영 적용에서는 Markdown template만 추가했으나 최신 사용자 보완 요청으로 PR 형식 checker·관련 테스트·단독 workflow를 함께 옮겼다. 제품 build/test CI·Ruleset·Secret·권한 설정은 변경하지 않는다. 자동 검사의 실제 최신 head 결과는 PR에서 확인하고 required 보호와 구분한다.
+- WYBU 형식 검사와 관련 테스트는 코팡 type·4개 확인 항목·WORK 링크 관례에 맞춰 적용한다. 원본 workflow의 제품 테스트 glob은 제외하고 checker 테스트만 실행한다. Issue/Work 관계·실제 검증 진실성·승인·merge Gate는 별도 직접 확인한다.
 - 코팡의 기존 실제 frontend/Gradle/ML 명령과 재현 가능한 입력을 먼저 확인한다. 안정적인 build/test/lint와 반복 회귀 위험이 확보될 때 그 명령만 최소 CI에 연결한다. 현재 앱에 인증·권한·결제·DB 경계가 있으므로 해당 변경에서 필요한 검증을 미루지 않되 문서 적용으로 실행됐다고 주장하지 않는다.
 - 반복 필요별 확장: 정기 협업자→PR 경유만 허용·작성자 외 review 1명·미해결 대화 차단·안정 CI required·main 삭제/force push 차단·서버 Squash only; 안정적인 실행 명령→CI; 반복 bug/feature 혼재→Issue 구분; 우선순위 관리 곤란→label/Project; reviewer 오배정→해당 경로 CODEOWNERS; 자주 동시 merge 대기+지원/안정 CI→merge queue; 실제 배포→tag/release; 동시 여러 배포 버전→release branch; 재현 성능/메모리 문제→targeted profiling/benchmark부터.
 - Secret/권한/DB/외부 입력 검증은 규모와 무관하다. credential·manifest/lockfile이 있으면 native push protection·dependency 알림 등 실제 지원·권한을 확인해 별도 적용한다. 원격 보안 설정 변경은 이 규칙을 복사한 것만으로 승인되지 않는다.

@@ -108,8 +108,8 @@
 ## GitHub 전달과 Squash merge
 
 - 상태: 내용·검증 정리 완료. [PR #1](https://github.com/Hdev-x/kopang-refactored/pull/1)을 Draft로 생성했고, Ready·merge·Squash SHA의 최신 상태는 PR/Git에서 확인한다. 이 구획의 Task는 내용/검증 Gate이며 실제 Git lifecycle 완료를 추정하지 않는다.
-- 최신 승인: 사용자 `푸쉬 피알 스쿼시 머지로 해야지`가 앞선 assistant의 local-only 해석을 대체한다. 작업 branch push→Draft PR→내용/검증 검토→Ready→Squash merge와 안전한 로컬 main 동기화까지 진행한다. 원격 main 직접 push·force push·보호/검사 우회·운영 DB/결제 실행은 하지 않는다.
-- 전달 기준: 실제 원격 main `183600ee` (원본 365개 이력). PR에는 운영규칙/상태/PR·Issue 양식과 앱 900파일 최상위 이전·필수 경로·위치 기록을 함께 설명한다. 기존 로컬 main FF 계열은 Squash 후 복구 가능한 backup과 해당 worktree branch로 보존한다.
+- 최신 승인: 사용자 `푸쉬 피알 스쿼시 머지로 해야지`가 앞선 assistant의 local-only 해석을 대체한다. 작업 branch push→Draft PR→내용/검증 검토→Ready→Squash merge→로컬 main 동기화→이번 remote/local branch·worktree 안전 정리까지 진행한다. 원격 main 직접 push·force push·보호/검사 우회·운영 DB/결제 실행은 하지 않는다.
+- 전달 기준: 실제 원격 main `183600ee` (원본 365개 이력). PR에는 운영규칙/상태/PR·Issue 양식과 앱 900파일 최상위 이전·필수 경로·위치 기록을 함께 설명한다. 기존 로컬 main FF와 최종 작업 이력은 외부 Git bundle로, worktree 전체 파일·필요한 ignored 생성물은 외부 archive로 복구 가능하게 보존한다. 종료 후 이번 작업용 backup/remote/local branch·worktree는 남기지 않는다.
 - GitHub 확인: 인증 Hdev-x, 비공개 저장소, push 권한 및 Squash 허용. main 조회의 protected=false. branch rules API는 현재 비공개 플랜의 403으로 조회 불가이므로 규칙 없음으로 쓰지 않는다. 실제 PR 검사·merge 조건은 PR/GitHub의 응답을 따르며 admin bypass는 사용하지 않는다.
 
 ### Task·내용 Gate
@@ -117,8 +117,15 @@
 - [x] 통과 · 실제 remote/auth/중복 PR·main ancestry·전달 범위 확인. local main 직접 업로드 없이 작업 branch를 사용한다.
 - [x] 통과 · 최신 승인/기록과 PR 본문을 전체 diff·검증 결과·기존 실패·미검증에 맞춰 완성.
 - [x] 통과 · Draft PR 내용의 전체 diff·비밀정보·앱 900개 보존·독립 코드/문서 검토 완료. 제출 직후 head `8c0b538`은 main `183600ee` 기준 914개 변경, mergeable/clean, check runs·commit statuses·리뷰·review thread 0개였다. 자동 검사 없음은 통과가 아니라 미등록으로 기록한다. 후속 상태 문서 변경은 앱 소스 동일성 및 새 diff/secret 검사로 확인한다.
-- [x] 준비 완료 · Ready·Squash 전에 최신 head/검사/리뷰·native merge 조건을 재확인하고 해당 SHA로 병합한다. 로컬 main은 clean/충돌 없는 상태와 backup 이름을 확인한 뒤 `backup/local-main-before-squash-2026-10-02`로 이력을 보존하고 새 main을 origin/main에 연결한다. 필요한 의존성이 있는 결과 worktree/branch는 보존한다. 실제 실행·merge SHA/tree·동기화 여부는 Git/PR와 아래 외부 근거에서 확인한다.
+- [x] 준비 완료 · 최신 head의 실제 검사/리뷰·native merge 조건과 부모의 최종 검토 Gate를 확인한 뒤 Ready·해당 SHA Squash를 진행한다. clean main의 기존 이력·최종 작업 branch를 외부 Git bundle로, worktree 전체를 외부 archive로 검증 보존한다. Squash tree와 최종 PR head·기존 local 변경 포함을 확인한 뒤 main을 origin/main에 동기화하고 이번 remote branch→Git worktree 제거→작업/임시 backup local branch만 정리한다. 실제 실행·SHA/tree·복구 자료·최종 refs는 Git/PR와 외부 근거가 정본이다.
 
 - 기존 앱 검증: build/type·Backend package/test compile·합성 ML HTTP·로그인 두 화면 비교 통과. lint 52 errors·6 warnings는 동일한 기존 실패다. PR 최신 head의 앱 900개 SHA256/mode와 승인된 ML 경로 4곳 정규화 AST를 대조하며 소스가 같으면 앱 검사를 반복하지 않는다. 실제 API/DB/결제/운영 모델은 미검증이고 원격 required check 실패는 우회하지 않는다.
 
 - 내용 Gate 근거: 원본 365개 커밋 누락 없음, 앱 900개 mode/매핑 보존 및 Web 599개·Backend 277개 blob 동일, ML 9개 승인 경로/docstring 정규화 AST 동일을 독립 검토했다. 상태 문서의 마지막 변경은 이 결과를 바꾸지 않는다. [외부 GitHub 전달 검증](</Users/han/Documents/Codex/2026-10-02/task-2/github-pr-merge/verification.json>)은 이 컴퓨터에서 실제 최신 head·검사·PR/merge·backup·local 결과를 확인하며 갱신한다. 다른 clone에서는 해당 PR/Git와 관련 코드로 재확인한다.
+
+### 상세 운영 양식·형식 검사 보완
+
+- 최신 사용자 재확인에 따라 WYBU의 상세 결과 card·변경 분류/중첩·이유 목록·검증 중첩과 PR checker·관련 테스트·단독 workflow를 보완한다. 원본 제품 `tests/*.test.mjs` 전체 실행은 제외하고 `tests/pr-check.test.mjs`만 실행한다. `refactor` type·WORK 링크·미검증 설명·4개 확인 항목은 코팡에 맞춘다.
+- 초기 Draft에는 PR/work Issue 양식이 head에 있었고 base/main에는 기존 qa-bug만 있었다. 상세 형식/자동 검사 제외는 이번 보완으로 대체하며 qa-bug와 앱 900개는 보존한다.
+- [x] 통과 · 원본 상세 양식·checker·관련 테스트·workflow와 Git 종료 규칙/본문을 일치시켰다. 제품 CI glob 제외·refactor/WORK/4개체크 적용, 기존 qa-bug·앱 소스 보존.
+- [x] 통과 · 로컬 checker 테스트 8개·실제 Draft 본문/Ready 후보 형식 검사 통과. 현재 앱 900개/hash/mode·QA 양식 보존, 문서 링크/diff/secret·독립 양식 검토 완료. 실제 최신 head workflow 결과와 부모 최종 검토·Ready/merge/정리는 Git/PR·외부 근거로 확인하며 로컬 검증을 원격 성공으로 표시하지 않는다.

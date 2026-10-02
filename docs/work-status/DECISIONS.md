@@ -68,3 +68,10 @@
 - 사용자 정정: `푸쉬 피알 스쿼시 머지로 해야지`. 앞선 assistant의 local-only 해석을 대체하며 작업 branch push→Draft PR 생성→최신 head 검토/검증→Ready→Squash merge를 승인한다. 원본 365개 이력과 기여자를 보존한다.
 - 적용: 최신 원격 main 기준 전체 diff와 실제 GitHub merge 조건을 확인한다. 로컬 main FF 계열은 복구 가능한 backup을 보존한 뒤 원격 Squash 결과와 동기화한다. 보호/검사 우회·force push·공유 이력 재작성·원본 팀/WYBU/펫케어 변경은 포함하지 않는다.
 - 실제 상태/한계: PR·merge·Squash SHA는 Git/GitHub가 정본이고 내용 Gate·기존 lint 실패·실제 API/DB/결제/운영 모델 미검증은 WORK·PR에 기록한다. 확인한 권한·이 사용자 승인을 되묻지 않고 같은 작업을 완료한다.
+
+
+### 2026-10-02 — 상세 운영 양식 보완과 이번 작업 안전 정리
+
+- 최신 사용자 요청: `다 됐으면 메인브런치랑 메인오리진만 남아야 하는거아닌가`, `pr 템플릿이나 이런거 전부 안가져온거같은데?`. 앞선 결과 branch/worktree 계속 보존 계획을 대체해 main 동기화와 이번 결과만 정리하는 종료 순서를 적용한다.
+- 적용: WYBU 상세 PR/Issue 양식·형식 checker·관련 테스트를 코팡 type/WORK 관례에 맞추고 단독 PR workflow로 실행한다. 제품 테스트 glob·앱 build CI·원격 보호/권한/Secret 변경은 포함하지 않는다. 최신 head/본문·자동검사·독립 검토가 끝나기 전 merge하지 않는다.
+- 보존: 원팀 365개 커밋·기여와 관련 없는 branch/worktree/저장소는 유지한다. 이번 기존 local FF 및 최종 PR head는 외부 bundle, worktree 파일은 외부 archive로 복원 가능하게 보존한 뒤 이번 remote/local branch·worktree만 정리한다. 최종 작업 refs에는 main/origin/main만 남기며 reflog expire·복구 불가능한 purge는 하지 않는다. 실제 상태와 근거는 WORK/PR/Git에서 확인한다.
