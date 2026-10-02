@@ -89,13 +89,17 @@
 - 적용 관례: WYBU 실제 worktree 및 AGENTS/git-workflow의 `/Users/han/dev/worktrees/<project>/<type>/<task>` 배치. 코팡의 현재 위치는 `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths`이며 branch `refactor/app-paths`·HEAD `43addd0`을 보존한다.
 - 방법: 시작 clean·실행 앱 프로세스 없음·목적지 충돌 없음 확인 후 Git worktree move. 과거 위치와 외부 감사 자료는 당시 기록으로 보존하며 감사 폴더를 옮기지 않음.
 - 검증: 이동 전후 tracked 928개 SHA256/mode 동일, 의존성/생성물 포함 244,953개 파일의 inode·size·mode·symlink 동일, old 위치 소멸·new toplevel·Git 연결/backlink·worktree 등록 확인. 새 위치에서 Vite 8.1.0/Node 25.9.0, Gradle wrapper 8.14.5/JDK 21 버전 명령, ML 9개 AST와 root CSV/서빙 module 및 web bin 링크 확인. 앱 소스가 동일해 이전 build/lint/ML/화면 검사를 반복하지 않았고 실제 API/DB/모델 미검증은 그대로다.
-- 위치 변경 종료 당시: CURRENT·WORK의 위치 기록만 unstaged dirty로 보존했다. 추가 commit/push는 해당 위치 요청에 포함되지 않았고 primary main `9ec5237`과 원본 팀/WYBU/펫케어를 수정하지 않았다. 최신 로컬 main 병합 요청에서 관련 문서 커밋을 진행한다.
+- 위치 변경 종료 당시: CURRENT·WORK의 위치 기록만 unstaged dirty로 보존했다. 추가 commit/push는 해당 위치 요청에 포함되지 않았고 primary main `9ec5237`과 원본 팀/WYBU/펫케어를 수정하지 않았다. 최신 로컬 main 병합 요청에서 `4e72323`으로 관련 문서 커밋을 정리했다.
 - 근거: [외부 worktree 위치 검증](</Users/han/Documents/Codex/2026-10-02/task-2/worktree-relocation/verification.json>). 기존 app-relocation 등 외부 evidence의 경로와 링크는 유지한다.
 
 
 ## 앱·위치 결과의 로컬 main 반영
 
-- 상태: 진행 중. 사용자 `머지까지 해줘` 요청의 이번 범위는 관련 문서 커밋과 로컬 main 병합만이다. push·PR·원격 merge·branch/worktree 삭제·이력 재작성·기능 변경은 제외한다.
+- 상태: 완료 (로컬 main 반영). 사용자 `머지까지 해줘` 요청의 이번 범위는 관련 문서 커밋과 로컬 main 병합만이다. push·PR·원격 merge·branch/worktree 삭제·이력 재작성·기능 변경은 제외한다.
 - 시작 상태: primary main `9ec5237` clean, branch `refactor/app-paths`의 `43addd0`에 CURRENT·WORK 위치 기록만 unstaged. main은 branch의 조상이고 충돌할 primary ignored 파일도 없음.
-- 방법: 문서만 선택·검증·커밋한 뒤 `git merge --ff-only refactor/app-paths`. 이번 사용자 범위에 맞춘 로컬 반영이며 원격 PR/Squash 정책이나 보호 설정을 변경하지 않는다.
+- 방법/실행: 관련 위치 문서 `4e72323` 커밋 후 `git merge --ff-only refactor/app-paths`로 main을 `9ec5237`에서 `4e72323`으로 갱신했다. 최신 실제 상태 문서도 같은 branch에서 커밋해 fast-forward로 main에 포함한다. 기존 커밋은 그대로 보존하며 별도 merge commit·Squash·rebase를 만들지 않는다. 원격 PR/Squash 기본 정책이나 보호 설정은 변경하지 않는다.
 - 기준: 기존 build/type·Backend package/test compile·합성 ML HTTP·로그인 두 화면 검증과 앱 900개 SHA256/mode를 재확인한다. lint 기존 52 errors·6 warnings 및 실제 API/DB/결제/모델 미검증은 유지한다. 문서 링크·전체 diff·secret 확인과 실제 main/branch 상태 대조로 완료 판단.
+
+- 완료 검증: main에 apps/web·apps/backend·apps/ml와 관련 기록 반영. 앱 900개 SHA256·mode는 `43addd0`과 같고 기본 앱 코드 변경 없음. 새 앱 검사를 반복하지 않고 소스 동일성에 따라 위 기존 build/type·Backend compile/package·합성 ML HTTP·로그인 비교 증거를 유지한다. 위치·완료 문서의 링크/diff/secret와 main·branch 결과 및 dirty 상태를 확인한다.
+- 범위/한계: 기존 lint 52 errors·6 warnings, 실제 Spring context·API/DB·결제·운영 모델 미검증은 그대로다. 로컬 완료를 GitHub 반영으로 표시하지 않는다. 원격은 main `183600ee`만 있으며 로컬 추가 commit 수와 최종 HEAD는 Git 및 아래 외부 근거에서 확인한다. worktree·branch와 필요한 ignored 의존성/생성물을 보존한다.
+- 근거: [외부 로컬 main 반영 검증](</Users/han/Documents/Codex/2026-10-02/task-2/local-main-merge/verification.json>). 현재 상태·다음 행동은 CURRENT에서 관리한다.
