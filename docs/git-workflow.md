@@ -61,10 +61,10 @@ Ready PR 제출·Ready 전환·merge 전 다음을 실제로 확인한다. 중�
 
 - 다른 작업 변경이 필요하거나 충돌이 생기면 승인된 작업 branch에서 최신 main을 merge해 다시 검증한다. dirty 파일을 보호하고 충돌을 임의 ours/theirs로 덮어쓰지 않는다. rebase/force push로 공유 이력을 바꾸지 않는다.
 - worktree는 파일을 분리할 뿐 코드 충돌을 막지 않는다. 작은 결과·명확한 소유권·빠른 검증으로 충돌 범위를 줄인다.
-- merge 승인에 포함된 정리는 정확한 PR merge와 미커밋·미전송·미반영 변경 없음부터 확인한다. 대상에 다른 작업/필요한 ignored 파일이 있으면 보존하고 제거하지 않는다.
+- merge 승인에 포함된 정리는 정확한 PR merge와 미커밋·미전송·미반영 변경 없음부터 확인한다. 관련 없는 작업이나 보존/복구 여부가 불확실한 파일이 있으면 정리를 멈추고 보존한다. 이번 작업의 필요한 ignored 자료는 외부 archive 보존·복구 검증이 끝난 경우에만 해당 작업공간과 함께 제거한다.
 - Squash commit tree가 최종 PR head와 같고 기존 local 변경이 모두 반영됐는지 확인한다. 필요한 파일과 복구용 Git bundle·worktree archive는 저장소 밖에 보존하고 primary main을 origin/main과 안전하게 동기화한다. 이번 결과만 정리한 종료 상태는 main/origin/main 동일·clean·작업 refs/worktree 제거로 확인하며 backup branch는 최종 작업 목록에 남기지 않는다. 관련 없는 refs/worktree·외부 검증 자료는 보존하고 reflog expire·복구 불가능한 purge를 하지 않는다.
 - 해당 remote branch→Git을 통한 worktree 제거→local branch 정리 순서. managed worktree는 앱의 정리 도구를 사용한다. Finder/rm으로 worktree를 먼저 지우지 않는다.
-- Squash 때문에 Git의 일반 merged 판정과 다를 수 있으므로 local branch 강제 삭제가 필요한 경우도 실제 PR merge·모든 변경 반영·백업 필요 없음이 확인된 해당 branch에만 적용한다. 확인되지 않으면 삭제하지 않는다.
+- Squash 때문에 Git의 일반 merged 판정과 다를 수 있으므로 local branch 강제 삭제가 필요한 경우도 실제 PR merge·모든 변경 반영·외부 복구 자료 검증 및 추가 백업 불필요가 확인된 해당 branch에만 적용한다. 확인되지 않으면 삭제하지 않는다.
 
 ## 7. CI·보호·workflow 확장
 

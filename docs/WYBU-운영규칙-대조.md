@@ -74,7 +74,7 @@
 - 원본 현재 Focus와 연결 활성 plan은 대기·실행 증거 없음이며 코팡 상태로 복사하지 않았다. 옛 질문 경로/재시작안/임시 검증 사본·WikiBU 경로·Hook/Runtime/Store/Jev 자동 승인·원문 대화는 제외했다.
 - 초기 대조에서는 제품 테스트와 형식 검증을 함께 제외했으나 최신 사용자 재확인에서 누락을 보완했다. 상세 PR/Issue 양식·형식 checker·관련 테스트·PR workflow를 코팡에 적용하고 WYBU 제품 테스트 glob만 제외한다. checker는 실제 앱/권한/관계/secret을 증명하지 않는다. 실제 검사 결과는 WORK/PR에 기록한다.
 - 관련 참조·상태/체크·대체/해결·diff 범위와 개인/원본 tracked/Git 상태 보존을 검사하고 독립 검토했다. 상세 [외부 검증](</Users/han/Documents/Codex/2026-10-02/task-2/operations-complete/verification.json>)과 원본 inventory는 이 컴퓨터 감사 자료이며 다른 clone에서는 접근되지 않을 수 있다.
-- 미확인: 실제 frontend/Gradle/ML baseline·브라우저/API/DB/ML 결과, remote Ruleset/required checks/merge 설정 및 향후 CI 지원. 이 규칙 대조 검증을 앱 동작 정상이나 원격 강제 활성화로 표현하지 않는다. 필요한 판단만 [열린 질문](./work-status/OPEN-QUESTIONS.md)에 남긴다.
+- 초기 대조 당시 미확인: frontend/Gradle/ML baseline·브라우저/API/DB/ML 결과, remote Ruleset/required checks/merge 설정 및 향후 CI 지원. 이후 확인한 앱 baseline/비교 검증·PR 권한/검사와 여전히 미검증인 실제 API/DB/운영 모델은 [WORK](./work-status/WORK.md) 및 실제 PR로 구분한다. 규칙/형식 검사 통과를 앱 실행 정상이나 서버 보호 활성화로 표현하지 않는다.
 
 ## 원팀·초기 적용 기록 보존
 
