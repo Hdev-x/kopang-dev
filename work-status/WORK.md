@@ -8,7 +8,7 @@
 - 상태: 완료 (로컬 문서 적용). 목표: 부분 적용을 보완해 필요한 작업·Git·문서·검증 규칙을 정확히 이어가기.
 - 포함: 원본 연결 규칙 대조, 필요한 코팡 운영문서·template·상태 수정, 완전성·참조·범위 검증.
 - 제외: 앱 소스 이동/리팩터링, 실제 branch 생성·commit/push/PR/merge, WYBU/원팀 수정, CI/권한/Runtime 적용.
-- 완료 조건: 원본 운영규칙의 반영/수정/제외와 이유가 [대조표](../WYBU-운영규칙-대조.md)에 있고 Task·Gate 증거와 문서 상태가 일치.
+- 완료 조건: 원본 운영규칙의 반영/수정/제외와 이유가 [대조표](../docs/WYBU-운영규칙-대조.md)에 있고 Task·Gate 증거와 문서 상태가 일치.
 
 ### Task
 
@@ -26,7 +26,7 @@
 
 - 상태: 완료 (실행 범위·검증 설계). 후속 실행 결과는 아래 앱 경로 이전 구획에서 관리한다.
 - 목표: `frontend→apps/web`, `backend→apps/backend`, `ml→apps/ml`의 작은 실행/검증/복구 단위 구체화.
-- 포함: [구조 계획](../개인-리팩터링-구조-계획.md) 6–7절 기준 실제 참조 경로·명령·baseline·환경·복구 방법 조사/계획.
+- 포함: [구조 계획](../docs/개인-리팩터링-구조-계획.md) 6–7절 기준 실제 참조 경로·명령·baseline·환경·복구 방법 조사/계획.
 - 이 계획 단계의 제외: 파일 이동·기능/URL/디자인/DB/모델 계약 변경·실제 Git 전달·운영 DB/결제 실행. 실제 파일 이동·로컬 커밋은 아래의 별도 승인된 실행 범위다.
 - 완료 조건: 앱별 이전 대상/참조·검증 명령/입력/기존 실패·복구·중단 조건과 실행 승인 범위 제시. 미확인 환경은 통과로 쓰지 않음.
 
@@ -46,7 +46,7 @@
 
 ## 앱 경로 이전 및 로컬 검증
 
-- 상태: 완료 (로컬 앱 이동·경로 수정·비교 검증). 결과는 `refactor/app-paths` worktree에 있으며 로컬 commit/HEAD는 Git 실제 상태로 확인한다. 목표: 세 앱 최상위 위치를 옮기고 기존 계약 보존.
+- 상태: 완료 (로컬 앱 이동·경로 수정·비교 검증). 결과는 당시 `refactor/app-paths` worktree에서 작성했으며 로컬 commit/HEAD는 Git 실제 상태로 확인한다. 목표: 세 앱 최상위 위치를 옮기고 기존 계약 보존.
 - 포함: 작성한 문서 기준 커밋, 작업 branch/worktree, 앱별 폴더 이동·필수 경로/명령/문서 참조, baseline/후 비교, 상태 기록, 로컬 결과 커밋.
 - 제외: 기능/스타일/PC·mobile 통합, 운영/원팀 DB·결제 실행, 원본 팀/WYBU/펫케어 변경, push·PR·merge/main 병합·CI 보호 설정.
 - 승인 근거: 위 계획과 문서 커밋+폴더 이동 안내 후 사용자 `ㄱㄱ` (2026-10-02 11:31:22Z). 이력 확인 요청으로 잠시 중단했으며 사용자 `그냥 그대로 진행` (11:45:40Z)로 같은 범위를 재개. 원본 365개 이력 유지.
@@ -78,7 +78,7 @@
 | 대표 화면 | 비로그인 `/login`, `/web/login`, 1280×720 렌더; 두 DOM snapshot·PNG SHA256 전후 동일, 확인 중 console error/warn 없음 | 로그인 제출·OAuth·결제·가입/상품 조회 이력 쓰기·전체 화면/반응형 기능 검증은 하지 않음. 외부 SDK 개별 통신은 검증하지 않음 |
 | 보존·문서 | 928 tracked 파일 매핑 보존, AppRouter 101개 Route byte 동일, 새 상대 링크 누락 없음 | root/ML README의 docs/_ 링크 3개, Web TODO의 API 초안·ML _ 아카이브는 이전부터 미존재. 임의 대체/생성하지 않음 |
 
-- 당시 앱 이전 검증 작업공간: `/Users/han/Documents/Codex/2026-10-02/task-2/kopang-app-paths`, branch `refactor/app-paths`. 현재 dev 위치는 [CURRENT](./CURRENT.md)를 참조한다. 당시 primary `/Users/han/dev/projects/personal/kopang-refactored`의 main은 문서 기준 `9ec5237`이었고 앱 배치는 기존대로였다.
+- 당시 앱 이전 검증 작업공간: `/Users/han/Documents/Codex/2026-10-02/task-2/kopang-app-paths`, branch `refactor/app-paths`. 현재 작업 위치는 [CURRENT](./CURRENT.md)를 참조한다. 당시 앱 이전 worktree는 PR #1 merge 뒤 정리했다. 당시 primary `/Users/han/dev/projects/personal/kopang-refactored`의 main은 문서 기준 `9ec5237`이었고 앱 배치는 기존대로였다.
 - 비밀정보: 실제 환경값·토큰·model·의존성·build/검증 산출물은 커밋하지 않음. 학습/API/DB 환경이 필요한 후속 기능은 개인 검증 입력·안전한 서비스부터 확보한다.
 - 당시 다음 행동: 기존 lint 실패와 개인 Backend/ML 실행 환경 중 후속 범위 결정. 앱 이전 당시 원격 전달은 제외였으며, 이후 승인된 GitHub 전달은 아래 별도 구획에서 관리한다.
 
@@ -86,7 +86,7 @@
 ## 수동 worktree의 dev 위치 변경
 
 - 상태: 완료 (로컬 위치 이동·문서 경로 갱신). 사용자 요청에 따라 기존 worktree를 재사용했고 새 branch·commit·push·merge·앱 변경은 하지 않음.
-- 적용 관례: WYBU 실제 worktree 및 AGENTS/git-workflow의 `/Users/han/dev/worktrees/<project>/<type>/<task>` 배치. 코팡의 현재 위치는 `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths`이며 branch `refactor/app-paths`·HEAD `43addd0`을 보존한다.
+- 적용 관례: WYBU 실제 worktree 및 AGENTS/git-workflow의 `/Users/han/dev/worktrees/<project>/<type>/<task>` 배치. 이동 당시 코팡 worktree 위치는 `/Users/han/dev/worktrees/kopang-refactored/refactor/app-paths`였으며 branch `refactor/app-paths`·HEAD `43addd0`을 보존한다.
 - 방법: 시작 clean·실행 앱 프로세스 없음·목적지 충돌 없음 확인 후 Git worktree move. 과거 위치와 외부 감사 자료는 당시 기록으로 보존하며 감사 폴더를 옮기지 않음.
 - 검증: 이동 전후 tracked 928개 SHA256/mode 동일, 의존성/생성물 포함 244,953개 파일의 inode·size·mode·symlink 동일, old 위치 소멸·new toplevel·Git 연결/backlink·worktree 등록 확인. 새 위치에서 Vite 8.1.0/Node 25.9.0, Gradle wrapper 8.14.5/JDK 21 버전 명령, ML 9개 AST와 root CSV/서빙 module 및 web bin 링크 확인. 앱 소스가 동일해 이전 build/lint/ML/화면 검사를 반복하지 않았고 실제 API/DB/모델 미검증은 그대로다.
 - 위치 변경 종료 당시: CURRENT·WORK의 위치 기록만 unstaged dirty로 보존했다. 추가 commit/push는 해당 위치 요청에 포함되지 않았고 primary main `9ec5237`과 원본 팀/WYBU/펫케어를 수정하지 않았다. 최신 로컬 main 병합 요청에서 `4e72323`으로 관련 문서 커밋을 정리했다.
@@ -129,3 +129,25 @@
 - 초기 Draft에는 PR/work Issue 양식이 head에 있었고 base/main에는 기존 qa-bug만 있었다. 상세 형식/자동 검사 제외는 이번 보완으로 대체하며 qa-bug와 앱 900개는 보존한다.
 - [x] 통과 · 원본 상세 양식·checker·관련 테스트·workflow와 Git 종료 규칙/본문을 일치시켰다. 제품 CI glob 제외·refactor/WORK/4개체크 적용, 기존 qa-bug·앱 소스 보존.
 - [x] 통과 · 로컬 checker 테스트 8개·실제 Draft 본문/Ready 후보 형식 검사 통과. 현재 앱 900개/hash/mode·QA 양식 보존, 문서 링크/diff/secret·독립 양식 검토 완료. 실제 최신 head workflow 결과와 부모 최종 검토·Ready/merge/정리는 Git/PR·외부 근거로 확인하며 로컬 검증을 원격 성공으로 표시하지 않는다.
+
+
+## 작업 상태 폴더 root 배치
+
+- 상태: 완료 (최초 로컬 문서 위치·참조 수정과 검증 당시 기록). 기준: main `4bf73790a66145f7c548174af5a77d3a24cbc828`에서 만든 `docs/root-work-status` branch/worktree.
+- 결과: `docs/work-status/`의 CURRENT·WORK·DECISIONS·OPEN-QUESTIONS·README 5개를 root `work-status/`로 이동했다. AGENTS·root README·구조 계획·운영 제안·WYBU 대조표의 관련 활성 참조와 이동 문서의 상대 링크를 맞추고, 옛 배치·Git 전달 기록은 당시 기록으로 표시했다.
+- 펫케어: `/Users/han/dev/projects/team/petcare/work-status/`는 이미 root이며 별도 Git 저장소다. 활성 AGENTS·Planning Manifest·연결 문서가 존재하고 옛 `docs/work-status` 참조가 없어 경로 수정은 필요하지 않다. 기존 미커밋 3개는 수정하지 않는다.
+- 검증 기준: 5개 새 위치·옛 폴더 소멸, 변경 문서 링크 누락 추가 없음·활성 옛 경로 없음·CURRENT/WORK/결정 정합, 문서만의 diff·staged 없음·HEAD 보존, 펫케어 dirty 파일 해시·Git 상태 보존. PR/Issue template·checker·관련 테스트·workflow에는 옛 경로가 없으므로 수정·테스트 반복을 하지 않는다.
+- 검증 결과: 상태 5파일·mode 보존, 옛 폴더 소멸, 변경 문서 링크 214개 확인·추가 누락 0·활성 옛 경로 링크 0, 문서 범위·diff 검사 통과. root README의 기존 누락 ML 문서 링크 1개는 그대로다. 앱·PR/Issue 양식·checker·테스트·workflow·Git 문서는 변경하지 않았다. 작업 HEAD·unstaged 상태·primary main과 펫케어 HEAD/branch/dirty 3파일 SHA256을 보존했다.
+- 근거: [외부 배치 검증](</Users/han/Documents/Codex/2026-10-02/task-2/work-status-layout/verification.json>)에 관찰 시점·변경 파일·링크·범위·보존 결과를 남긴다. 다른 clone에는 없는 로컬 자료다.
+- 최초 로컬 단계 한계: 앱 build/API/DB/ML·대규모 이력/복구 archive 검사는 반복하지 않았다. 당시 commit·push·PR·merge는 제외였고 이후 사용자 요청으로 아래 Git 전달 범위를 승인받았다.
+
+
+## root 배치·규칙 보완의 GitHub 전달
+
+- 상태: 내용·로컬 검증 완료. 실제 원격 검사·Ready/merge·정리는 Git/PR의 최신 상태로 확인한다. 목표: 기존 root 이동 결과를 보존하고 필요한 운영규칙·양식 대조를 마친 한 결과를 PR·Squash로 전달한다. 기준 main `4bf73790a66145f7c548174af5a77d3a24cbc828`, 기존 `docs/root-work-status` branch/worktree 재사용.
+- 승인: 사용자 “둘다 피알템플릿이라던지 규칙 잘 되어있는거지? 잘 되어있으면 pr 올리고 스커시머지까지 진행해줘” 및 worktree 규칙까지 꼼꼼히 대조 요청. 코팡 개인 저장소의 문서·양식·관련 검사 보완, commit/push·Draft/Ready·Squash·main 동기화·이번 branch/worktree 안전 정리를 포함한다. 보호/보안 설정 우회·원팀/WYBU 수정·앱 계약 변경은 제외한다.
+- 대조 결과: 수동 dev/worktrees 경로·branch 대응과 CURRENT 실질 변경 시 Main 갱신 조건 2개 보완. Fast/Stage 단위·독립 Writer 작업환경·single Writer·충돌 처리·시작/종료 갱신·Squash 뒤 동기화/정리는 기존 규칙 유지. 상세 PR/Issue 양식·checker·focused 테스트·workflow 필수 누락 없음. 제품특화 제외 이유와 실제 파일 근거는 [WYBU 대조표](../docs/WYBU-운영규칙-대조.md)에 기록한다.
+- Gate: 문서 이동 보존·상대 링크·활성 옛 경로·상태/합의 정합, 문서만의 전체 diff·민감정보, checker 테스트 8개와 실제 Draft/Ready 본문 형식, 실제 최신 head 자동 검사·review·native merge 조건을 확인한다. 로컬 Gate와 원격 merge 완료는 구분한다.
+- 로컬 Gate 결과: 기존 이동 5파일·문서 범위·상태/승인·새 규칙 2개 독립 대조 통과. 링크 223개·추가 누락 0·활성 옛 경로 링크 0·diff/민감정보 검사 통과, checker 테스트 8/8 통과. 기존 root README 누락 ML 링크는 그대로며 앱·상세 template·Issue·checker·테스트·workflow는 변경하지 않았다. 최초 PR 제출 전에는 원격 check를 통과로 표시하지 않고 실제 최신 head 결과를 아래 외부 근거에서 확인한다.
+- 근거: [외부 PR 전달 검증](</Users/han/Documents/Codex/2026-10-02/task-2/work-status-pr/verification.json>)에 최신 PR URL·head/base·검사·merge SHA·복구 자료·main 동기화·정리 결과를 남긴다. 다른 clone에는 없는 로컬 자료이므로 실제 Git/PR로 재확인한다.
+- 한계·다음 행동: 앱 전체 build·이력/대형 archive 재검사는 반복하지 않는다. 기존 lint 실패와 실제 API/DB/결제/운영 모델 미검증은 앞선 앱 결과의 한계다. 새 기능 실행 정상이나 서버 required 보호를 이번 문서/형식 검사로 주장하지 않는다. 후속 개선 범위는 CURRENT에서 확인한다.
